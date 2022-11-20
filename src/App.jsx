@@ -1,54 +1,21 @@
 import { MDBInput, MDBTable, MDBTableBody, MDBTableHead } from 'mdb-react-ui-kit'
 import { useEffect, useState } from 'react'
 
+import newCounts, { initialCounts } from "./newCounts"
+
 function App() {
-  const initialCounts = {
-    "inch": 0,
-    "half": 0,
-    "quarter": 0,
-    "eigth": 0,
-    "sixteenth": 0,
-    "thirtysecond": 0,
-  }
 
   const [width, setWidth] = useState(0.000)
   const [counts, setCounts] = useState(initialCounts)
 
-  const ringSizes = [1, (1 / 2), (1 / 4), (1 / 8), (1 / 16), (1 / 32)]
 
   const changeWidth = (e) => {
     setWidth(e.target.value)
   }
 
-  const target = +width + 0.125
 
   useEffect(() => {
-    let t = +width === 0 ? 0 : target
-
-    console.log(width)
-    let newCounts = { ...initialCounts }
-
-    Object.keys(counts).forEach((cur, i) => {
-      if (i === 0) {
-        newCounts = {
-          ...newCounts,
-          [cur]: Math.floor(t)
-        }
-        t -= Math.floor(t)
-      } else {
-        const diff = t - ringSizes[i]
-        if (diff >= 0) {
-          newCounts = {
-            ...newCounts,
-            [cur]: 1,
-          }
-          t = diff
-        }
-      }
-      //8.875
-      setCounts(newCounts)
-    })
-    console.log(t)
+    setCounts(newCounts(width, counts))
   }, [width])
 
   return (
