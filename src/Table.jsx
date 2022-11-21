@@ -2,8 +2,8 @@ import { MDBTable, MDBTableBody, MDBTableHead } from "mdb-react-ui-kit"
 import Row from "./Row"
 
 export default function Table({ counts }) {
-  const rows = Object.keys(counts).map((count, i) => {
-    return <Row key={i} size={count} amount={counts[count]} />
+  const rows = Object.entries(counts).map(([size, count], i) => {
+    return <Row key={i} size={size} amount={count} />
   })
 
   return (
