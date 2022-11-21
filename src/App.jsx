@@ -8,11 +8,9 @@ function App() {
   const [width, setWidth] = useState(0.000)
   const [counts, setCounts] = useState(initialCounts)
 
-
   const changeWidth = (e) => {
     setWidth(e.target.value)
   }
-
 
   useEffect(() => {
     setCounts(newCounts(width, counts))
