@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import newCounts, { initialCounts } from "./newCounts"
 import Table from './Table'
 import Input from './Input'
+import Status from './Status'
 
 
 export default function Overarm() {
@@ -22,6 +23,7 @@ export default function Overarm() {
       <h2>Arm</h2>
       <Input width={width} setWidth={changeWidth} />
       <Table counts={counts} />
+      <Status width={width} counts={counts} />
     </div>
   )
 }

@@ -1,4 +1,4 @@
-const target = (width) => +width + 0.125
+export const target = (width) => +width + 0.125
 
 const ringSizes = [1, (1 / 2), (1 / 4), (1 / 8), (1 / 16), (1 / 32)]
 
@@ -9,6 +9,15 @@ export const initialCounts = {
   "eigth": 0,
   "sixteenth": 0,
   "thirtysecond": 0,
+}
+
+const nameSize = {
+  inch: 1,
+  half: 1 / 2,
+  quarter: 1 / 4,
+  eigth: 1 / 8,
+  sixteenth: 1 / 16,
+  thirtysecond: 1 / 32,
 }
 
 export default function newCounts(width, counts) {
@@ -35,4 +44,13 @@ export default function newCounts(width, counts) {
   })
 
   return nCounts
+}
+
+export function sumCounts(counts) {
+
+  const total = Object.entries(counts).reduce((acc, [name, count]) =>
+    acc += (count * nameSize[name]), 0
+  )
+
+  return total
 }
