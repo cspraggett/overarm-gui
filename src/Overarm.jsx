@@ -4,11 +4,12 @@ import newCounts, { initialCounts } from "./newCounts"
 import Table from './Table'
 import Input from './Input'
 import Status from './Status'
-
+import Switch from './Switch'
 
 export default function Overarm() {
   const [width, setWidth] = useState(0.000)
   const [counts, setCounts] = useState(initialCounts)
+  const [isLightGauge, setIsLightGauge] = useState(false)
 
   useEffect(() => {
     setCounts(newCounts(width, counts))
@@ -17,13 +18,19 @@ export default function Overarm() {
   const changeWidth = (e) => {
     setWidth(e.target.value)
   }
+
+  const changeGauge = () => {
+    setIsLightGauge(!isLightGauge)
+  }
+
   return (
     <div className='d-flex flex-column justify-content-top align-items-center mt-3'>
       <h1>Over</h1>
       <h2>Arm</h2>
       <Input width={width} setWidth={changeWidth} />
+      <Switch lightGauge={isLightGauge} setLightGauge={changeGauge} />
       <Table counts={counts} />
-      <Status width={width} counts={counts} />
+      <Status width={width} counts={counts} isLightGuage />
     </div>
   )
 }
