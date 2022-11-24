@@ -10,13 +10,24 @@ export default function Overarm() {
   const [width, setWidth] = useState(0.000)
   const [counts, setCounts] = useState(initialCounts)
   const [isLightGauge, setIsLightGauge] = useState(false)
+  const [target, setTarget] = useState(0)
+
+  const LIGHT_GAUGE = (1 / 16)
+  const HEAVY_GAUGE = (1 / 8)
 
   useEffect(() => {
-    setCounts(newCounts(width, counts))
-  }, [width])
+    if (!+width) {
+      setTarget(0)
+    } else {
+      const newTarget = (isLightGauge ? +width + LIGHT_GAUGE : +width + HEAVY_GAUGE)
+      setTarget(newTarget)
+      setCounts(newCounts(newTarget, counts))
+    }
+  }, [width, isLightGauge])
 
   const changeWidth = (e) => {
     setWidth(e.target.value)
+    11
   }
 
   const changeGauge = () => {
@@ -30,7 +41,7 @@ export default function Overarm() {
       <Input width={width} setWidth={changeWidth} />
       <Switch lightGauge={isLightGauge} setLightGauge={changeGauge} />
       <Table counts={counts} />
-      <Status width={width} counts={counts} isLightGuage />
+      <Status target={target} counts={counts} isLightGuage />
     </div>
   )
 }

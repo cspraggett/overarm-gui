@@ -1,5 +1,3 @@
-export const target = (width) => +width + 0.125
-
 const ringSizes = [1, (1 / 2), (1 / 4), (1 / 8), (1 / 16), (1 / 32)]
 
 export const initialCounts = {
@@ -21,24 +19,23 @@ const nameSize = {
 }
 
 export default function newCounts(width, counts) {
-  let t = !+width ? 0 : target(width)
   let nCounts = { ...initialCounts }
 
   Object.keys(counts).forEach((cur, i) => {
     if (i === 0) {
       nCounts = {
         ...nCounts,
-        [cur]: Math.floor(t)
+        [cur]: Math.floor(width)
       }
-      t -= Math.floor(t)
+      width -= Math.floor(width)
     } else {
-      const diff = t - ringSizes[i]
+      const diff = width - ringSizes[i]
       if (diff >= 0) {
         nCounts = {
           ...nCounts,
           [cur]: 1,
         }
-        t = diff
+        width = diff
       }
     }
   })
@@ -52,5 +49,6 @@ export function sumCounts(counts) {
     acc += (count * nameSize[name]), 0
   )
 
+  console.log({ total })
   return total
 }

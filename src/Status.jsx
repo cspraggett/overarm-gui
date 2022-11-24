@@ -1,13 +1,13 @@
 import { MDBInput } from "mdb-react-ui-kit";
 import { useEffect, useState } from "react";
 
-import { sumCounts, target } from './newCounts'
+import { sumCounts } from './newCounts'
 
-export default function Status({ width, counts }) {
+export default function Status({ target, counts }) {
   const [deviation, setDeviation] = useState(0)
 
   useEffect(() => {
-    setDeviation(target(width) - sumCounts(counts))
+    setDeviation(target - sumCounts(counts))
   }, [counts])
 
   return (
@@ -17,7 +17,7 @@ export default function Status({ width, counts }) {
         placeholder="Target"
         id='target'
         type='text'
-        value={target(width) || 0}
+        value={target || 0}
         readonly />
 
       <MDBInput
