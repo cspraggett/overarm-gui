@@ -7,7 +7,7 @@ export default function Status({ target, counts }) {
   const [deviation, setDeviation] = useState(0)
 
   useEffect(() => {
-    setDeviation(target - sumCounts(counts))
+    setDeviation(sumCounts(counts) - target)
   }, [counts])
 
   return (
