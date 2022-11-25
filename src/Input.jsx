@@ -7,7 +7,7 @@ export default function Input({ width, setWidth }) {
       <MDBInput
         label='Coil width:'
         id='form1'
-        type='text'
+        type='number'
         size='lg'
         value={width}
         onChange={setWidth} />
