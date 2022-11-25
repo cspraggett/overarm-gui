@@ -36,8 +36,7 @@ export default function Overarm() {
 
   return (
     <div className='d-flex flex-column justify-content-top align-items-center mt-3'>
-      <h1>Over</h1>
-      <h2>Arm</h2>
+      <h1>Over-arm Calculator</h1>
       <Input width={width} setWidth={changeWidth} />
       <Switch lightGauge={isLightGauge} setLightGauge={changeGauge} />
       <Table counts={counts} />
